@@ -50,3 +50,6 @@ TagManager:
   - name: Robot
     uniqueID: 783209699
     locked: 0
+  - name: Rocks
+    uniqueID: 3696642293
+    locked: 0
