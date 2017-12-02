@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public int Fish;
 
     [SerializeField]
@@ -59,7 +59,7 @@ public class GameState : MonoBehaviour
         sinkChance = Mathf.Max(0.0f, 
             -(currentBoat.stabilityIncrease) 
             + Random.Range(0, storminess) 
-            + (Fish / currentBoat.fishCapacity)
+            + ((float)Fish / currentBoat.fishCapacity)
             );
     }
 }
