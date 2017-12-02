@@ -12,6 +12,8 @@ public class GameState : MonoBehaviour
 
     [SerializeField]
     private Text fishText;
+    [SerializeField]
+    private Text cashText;
 
     [SerializeField]
     private float sinkChance;
@@ -36,6 +38,8 @@ public class GameState : MonoBehaviour
         storminess = 0.0f;
         Fish = 0;
         fishText.text = Fish.ToString();
+        Money = 0;
+        cashText.text = Money.ToString();
 
         boats.Add(BoatType.boat1x2, new BaseBoat(0.1f, 1, 2));
         boats.Add(BoatType.boat2x2, new BaseBoat(0.2f, 2, 2));
@@ -75,5 +79,6 @@ public class GameState : MonoBehaviour
         Money += Fish;
         Fish = 0;
         fishText.text = Fish.ToString();
+        cashText.text = Money.ToString();
     }
 }
