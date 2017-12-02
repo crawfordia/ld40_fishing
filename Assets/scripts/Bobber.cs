@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bobber : MonoBehaviour {
+
+    [HideInInspector]
+    FishingSpot fishingSpot;
+
     public bool hit
     {
         private set;
         get;
     }
 
-    public bool hasFish
+    public int fishOn
     {
         private set;
         get;
@@ -28,7 +32,7 @@ public class Bobber : MonoBehaviour {
     private void Start()
     {
         hit = false;
-        hasFish = false;
+        fishOn = 0;
     }
 
     private void OnTriggerEnter2D()
@@ -39,56 +43,56 @@ public class Bobber : MonoBehaviour {
         }
     }
 
-    private IEnumerator checkCatch()
+    private IEnumerator checkCatch(FishingSpot fishSpot)
     {
         while(true)
         {
-            yield return new WaitForSeconds(1f + Random.value * 2f);
-
-            if(!hasFish && Random.value < .5f)
+            if((fishOn = fishSpot.FishOnBobber()) > 0)
             {
-                hasFish = true;
                 sprite.color = Color.yellow;
             }
             else
             {
-                hasFish = false;
                 sprite.color = Color.white;
             }
+            yield return new WaitForSeconds(1f + Random.value * 2f);
         }
     }
 
     private void OnEnable()
     {
         hit = false;
-        hasFish = false;
+        fishOn = 0;
 
-        if(Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("Fish")) != null)
+        Collider2D collider = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("Fish"));
+
+        if(collider != null)
         {
-            fishRoutine = StartCoroutine(checkCatch());
+            fishingSpot = collider.GetComponent<FishingSpot>();
+            fishRoutine = StartCoroutine(checkCatch(fishingSpot));
+        }
+        else
+        {
+            fishingSpot = null;
         }
         
     }
 
     private void OnDisable()
     {
-        if(fishRoutine != null)
+        if(fishRoutine != null && fishingSpot != null)
         {
             StopCoroutine(fishRoutine);
             fishRoutine = null;
+            fishingSpot.TakeFish(fishOn);
         }
         sprite.color = Color.white;
     }
 
-    public bool TakeFish()
+    public int TakeFish()
     {
-        if(hasFish)
-        {
-            hasFish = false;
-            return true;
-        }
-
-        return false;
-        
+        int fish = fishOn;
+        fishOn = 0;
+        return fish;        
     }
 }

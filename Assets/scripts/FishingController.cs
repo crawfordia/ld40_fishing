@@ -92,10 +92,7 @@ public class FishingController : MonoBehaviour
         state = RodState.LineIn;
         bobber.transform.parent = transform;
 
-        if(bobber.TakeFish())
-        {
-            game.AddFish();
-        }
+        game.AddFish(bobber.TakeFish());
     }
 
     private void startReel()

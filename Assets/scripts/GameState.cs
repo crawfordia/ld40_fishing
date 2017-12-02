@@ -21,6 +21,8 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private float storminess;
 
+    public float fishingRadius = 10.0f;
+
     enum BoatType {
         boat1x2,
         boat2x2,
@@ -68,9 +70,9 @@ public class GameState : MonoBehaviour
             );
     }
 
-    public void AddFish()
+    public void AddFish(int numFish)
     {
-        Fish += 1;
+        Fish += numFish;
         fishText.text = Fish.ToString();
     }
 
