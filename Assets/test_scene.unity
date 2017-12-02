@@ -127,12 +127,12 @@ Prefab:
     - target: {fileID: 224473341975837954, guid: c0cbeac1fc9adae429ce492b5db271d9,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 665
+      value: 574.5
       objectReference: {fileID: 0}
     - target: {fileID: 224473341975837954, guid: c0cbeac1fc9adae429ce492b5db271d9,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 374
+      value: 323
       objectReference: {fileID: 0}
     - target: {fileID: 224473341975837954, guid: c0cbeac1fc9adae429ce492b5db271d9,
         type: 2}
@@ -213,6 +213,26 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224899949810156882, guid: c0cbeac1fc9adae429ce492b5db271d9,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -496.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224899949810156882, guid: c0cbeac1fc9adae429ce492b5db271d9,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 257
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511349464536430, guid: c0cbeac1fc9adae429ce492b5db271d9,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -491.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511349464536430, guid: c0cbeac1fc9adae429ce492b5db271d9,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 260.7
       objectReference: {fileID: 0}
     - target: {fileID: 223059204884234192, guid: c0cbeac1fc9adae429ce492b5db271d9,
         type: 2}
@@ -671,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boatRigidbody: {fileID: 79643185}
   offset: {x: 0, y: 0, z: -10}
+  localOffset: {x: 0, y: 0, z: 0}
   velocityScale: 0.5
 --- !u!114 &1995736764
 MonoBehaviour:

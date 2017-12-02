@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599759173843050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.68, z: 0}
+  m_LocalPosition: {x: 0, y: 0.952, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4608112259278478}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676214029185718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.42, z: 0}
+  m_LocalPosition: {x: 0, y: 0.69200003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4608112259278478}
@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1611236348706918}
   m_LocalRotation: {x: -0, y: -0, z: 0.124310575, w: 0.9922434}
-  m_LocalPosition: {x: 0.359, y: 0.538, z: 0}
+  m_LocalPosition: {x: 0.359, y: 0.80999994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4608112259278478}
@@ -157,7 +157,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1555169215019072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.329, z: 0}
+  m_LocalPosition: {x: 0, y: -0.057, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4608112259278478}
@@ -192,10 +192,10 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.44}
+  m_Offset: {x: 0, y: 0.64}
   m_Size: {x: 1.26, y: 3.4}
   m_Direction: 0
 --- !u!114 &114839704006485600
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobber: {fileID: 0}
   reelSpeed: 20
-  autoReelDistance: 6
+  autoReelDistance: 9
 --- !u!114 &114997466360455254
 MonoBehaviour:
   m_ObjectHideFlags: 1
