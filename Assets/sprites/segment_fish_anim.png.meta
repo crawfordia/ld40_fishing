@@ -1,9 +1,14 @@
 fileFormatVersion: 2
 guid: fad23a1f547088042aa7405e5f184b82
-timeCreated: 1512198915
+timeCreated: 1512199851
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: segment_fish_anim_0
+    21300002: segment_fish_anim_1
+    21300004: segment_fish_anim_2
+    21300006: segment_fish_anim_3
+    21300008: segment_fish_anim_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -31,7 +36,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -40,13 +45,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 40
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -65,11 +70,172 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
+    sprites:
+    - serializedVersion: 2
+      name: segment_fish_anim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: segment_fish_anim_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 0
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: segment_fish_anim_2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: segment_fish_anim_3
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 0
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: segment_fish_anim_4
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -50.5, y: 9.5}
+      - {x: -59.5, y: 6.5}
+      - {x: -61.5, y: 5.5}
+      - {x: -61.5, y: -8.5}
+      - {x: -44.5, y: -8.5}
+      - {x: -38.5, y: -7.5}
+      - {x: -37.5, y: -2.5}
+      - {x: -37.5, y: 3.5}
+      - {x: -44.5, y: 9.5}
+    - - {x: -18.5, y: 9.5}
+      - {x: -26.5, y: 9.5}
+      - {x: -37.5, y: 6.5}
+      - {x: -37.5, y: -5.5}
+      - {x: -36.5, y: -8.5}
+      - {x: -18.5, y: -8.5}
+      - {x: -13.5, y: -4.5}
+      - {x: -13.5, y: 1.5}
+      - {x: -15.5, y: 8.5}
+    - - {x: -10.5, y: 9.5}
+      - {x: -10.5, y: -7.5}
+      - {x: -8.5, y: -8.5}
+      - {x: 8.5, y: -8.5}
+      - {x: 11.5, y: -3.5}
+      - {x: 11.5, y: 3.5}
+      - {x: 4.5, y: 9.5}
+    - - {x: 30.5, y: 9.5}
+      - {x: 24.5, y: 9.5}
+      - {x: 13.5, y: 5.5}
+      - {x: 13.5, y: -7.5}
+      - {x: 15.5, y: -8.5}
+      - {x: 28.5, y: -8.5}
+      - {x: 35.5, y: -6.5}
+      - {x: 36.5, y: -3.5}
+      - {x: 36.5, y: 4.5}
+    - - {x: 46.5, y: 9.5}
+      - {x: 38.5, y: 8.5}
+      - {x: 38.5, y: -8.5}
+      - {x: 57.5, y: -8.5}
+      - {x: 62.5, y: -7.5}
+      - {x: 62.5, y: 3.5}
+      - {x: 55.5, y: 9.5}
+    physicsShape:
+    - - {x: -50.5, y: 9.5}
+      - {x: -59.5, y: 6.5}
+      - {x: -61.5, y: 5.5}
+      - {x: -61.5, y: -8.5}
+      - {x: -44.5, y: -8.5}
+      - {x: -38.5, y: -7.5}
+      - {x: -37.5, y: -2.5}
+      - {x: -37.5, y: 3.5}
+      - {x: -44.5, y: 9.5}
+    - - {x: -18.5, y: 9.5}
+      - {x: -26.5, y: 9.5}
+      - {x: -37.5, y: 6.5}
+      - {x: -37.5, y: -5.5}
+      - {x: -36.5, y: -8.5}
+      - {x: -18.5, y: -8.5}
+      - {x: -13.5, y: -4.5}
+      - {x: -13.5, y: 1.5}
+      - {x: -15.5, y: 8.5}
+    - - {x: -10.5, y: 9.5}
+      - {x: -10.5, y: -7.5}
+      - {x: -8.5, y: -8.5}
+      - {x: 8.5, y: -8.5}
+      - {x: 11.5, y: -3.5}
+      - {x: 11.5, y: 3.5}
+      - {x: 4.5, y: 9.5}
+    - - {x: 30.5, y: 9.5}
+      - {x: 24.5, y: 9.5}
+      - {x: 13.5, y: 5.5}
+      - {x: 13.5, y: -7.5}
+      - {x: 15.5, y: -8.5}
+      - {x: 28.5, y: -8.5}
+      - {x: 35.5, y: -6.5}
+      - {x: 36.5, y: -3.5}
+      - {x: 36.5, y: 4.5}
+    - - {x: 46.5, y: 9.5}
+      - {x: 38.5, y: 8.5}
+      - {x: 38.5, y: -8.5}
+      - {x: 57.5, y: -8.5}
+      - {x: 62.5, y: -7.5}
+      - {x: 62.5, y: 3.5}
+      - {x: 55.5, y: 9.5}
   spritePackingTag: 
   userData: 
   assetBundleName: 

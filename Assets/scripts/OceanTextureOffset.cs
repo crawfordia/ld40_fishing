@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 
 public class OceanTextureOffset : MonoBehaviour {
-
-    public GameObject boat;
     public Renderer rend;
 
 	// Use this for initialization
@@ -11,7 +9,7 @@ public class OceanTextureOffset : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        rend.material.mainTextureOffset = boat.transform.position * 0.1f;
+	void LateUpdate () {
+        rend.material.mainTextureOffset = transform.position * 0.025f;
 	}
 }
