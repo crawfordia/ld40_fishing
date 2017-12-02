@@ -53,7 +53,7 @@ public class Bobber : MonoBehaviour {
             else
             {
                 hasFish = false;
-                sprite.color = Color.red;
+                sprite.color = Color.white;
             }
         }
     }
@@ -77,7 +77,7 @@ public class Bobber : MonoBehaviour {
             StopCoroutine(fishRoutine);
             fishRoutine = null;
         }
-        sprite.color = Color.red;
+        sprite.color = Color.white;
     }
 
     public bool TakeFish()
