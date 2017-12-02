@@ -51,6 +51,7 @@ public class FishingController : MonoBehaviour {
 
     private void startCast(Vector2 point)
     {
+        state = RodState.Casting;
         StartCoroutine(castRoutine(point));
     }
 
@@ -84,6 +85,7 @@ public class FishingController : MonoBehaviour {
 
     private void startReel()
     {
+        state = RodState.Reeling;
         StartCoroutine(reelRoutine());
     }
 }
