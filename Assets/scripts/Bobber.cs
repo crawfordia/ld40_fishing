@@ -62,13 +62,21 @@ public class Bobber : MonoBehaviour {
     {
         hit = false;
         hasFish = false;
+
+        if(Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("Fish")) != null)
+        {
+            fishRoutine = StartCoroutine(checkCatch());
+        }
         
-        fishRoutine = StartCoroutine(checkCatch());
     }
 
     private void OnDisable()
     {
-        StopCoroutine(fishRoutine);
+        if(fishRoutine != null)
+        {
+            StopCoroutine(fishRoutine);
+            fishRoutine = null;
+        }
         sprite.color = Color.red;
     }
 
