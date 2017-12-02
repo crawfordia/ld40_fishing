@@ -112,6 +112,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!50 &79643185 stripped
+Rigidbody2D:
+  m_PrefabParentObject: {fileID: 50318577325730326, guid: 6b53c131e6e8da04a87e0b6d62c411a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 395144953}
+--- !u!1001 &395144953
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608112259278478, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109313043008388, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+      propertyPath: m_Name
+      value: boat
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1995736758
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +174,7 @@ GameObject:
   - component: {fileID: 1995736761}
   - component: {fileID: 1995736760}
   - component: {fileID: 1995736759}
+  - component: {fileID: 1995736763}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -192,3 +244,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1995736763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1995736758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aeae44c7b12af47afa546910c60e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boatRigidbody: {fileID: 79643185}
+  offset: {x: 0, y: 0, z: -10}
+  velocityScale: 0.5
