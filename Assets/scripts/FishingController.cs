@@ -13,7 +13,7 @@ public class FishingController : MonoBehaviour
     }
 
     private RodState state;
-
+    private GameState game;
     private const float tolerance = .02f;
 
     [SerializeField]
@@ -29,6 +29,9 @@ public class FishingController : MonoBehaviour
         state = RodState.LineIn;
         bobber.transform.position = transform.position;
         bobber.transform.parent = transform;
+        bobber.enabled = false;
+
+        game = FindObjectOfType<GameState>();
     }
 
     // Update is called once per frame
@@ -88,6 +91,11 @@ public class FishingController : MonoBehaviour
 
         state = RodState.LineIn;
         bobber.transform.parent = transform;
+
+        if(bobber.TakeFish())
+        {
+            game.AddFish();
+        }
     }
 
     private void startReel()

@@ -62,4 +62,10 @@ public class GameState : MonoBehaviour
             + ((float)Fish / currentBoat.fishCapacity)
             );
     }
+
+    public void AddFish()
+    {
+        Fish += 1;
+        fishText.text = Fish.ToString();
+    }
 }
