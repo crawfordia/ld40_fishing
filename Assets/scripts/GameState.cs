@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour
 {
     //[HideInInspector]
     public int Fish;
+    public int Money;
 
     [SerializeField]
     private Text fishText;
@@ -66,6 +67,13 @@ public class GameState : MonoBehaviour
     public void AddFish()
     {
         Fish += 1;
+        fishText.text = Fish.ToString();
+    }
+
+    public void SellFish()
+    {
+        Money += Fish;
+        Fish = 0;
         fishText.text = Fish.ToString();
     }
 }
