@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishingController : MonoBehaviour {
+public class FishingController : MonoBehaviour
+{
     enum RodState
     {
         LineIn,
@@ -16,19 +17,23 @@ public class FishingController : MonoBehaviour {
     private const float tolerance = .02f;
 
     [SerializeField]
-    private Transform bobber;
+    private Bobber bobber;
     [SerializeField]
     private float reelSpeed = 1.0f;
+    [SerializeField]
+    private float autoReelDistance = 6.0f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         state = RodState.LineIn;
-        bobber.position = transform.position;
-        bobber.parent = transform;
+        bobber.transform.position = transform.position;
+        bobber.transform.parent = transform;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         switch(state)
         {
             case RodState.LineIn:
@@ -37,17 +42,19 @@ public class FishingController : MonoBehaviour {
                     Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     startCast(point);
                 }
-                
+
                 break;
             case RodState.LineOut:
-                if(Input.GetButtonDown("Fire1"))
+                if(Input.GetButtonDown("Fire1")
+                || Vector2.Distance(transform.position, bobber.transform.position) > autoReelDistance
+                || bobber.hit)
                 {
                     startReel();
                 }
                 break;
 
         }
-	}
+    }
 
     private void startCast(Vector2 point)
     {
@@ -60,12 +67,13 @@ public class FishingController : MonoBehaviour {
         while(Vector2.Distance(bobber.transform.position, target) > tolerance)
         {
             bobber.transform.position = Vector3.MoveTowards(bobber.transform.position, target, reelSpeed * Time.deltaTime);
-            
+
             yield return null;
         }
 
         state = RodState.LineOut;
-        bobber.parent = null;
+        bobber.transform.parent = null;
+        bobber.enabled = true;
 
     }
 
@@ -79,12 +87,12 @@ public class FishingController : MonoBehaviour {
         }
 
         state = RodState.LineIn;
-        bobber.parent = transform;
-
+        bobber.transform.parent = transform;
     }
 
     private void startReel()
     {
+        bobber.enabled = false;
         state = RodState.Reeling;
         StartCoroutine(reelRoutine());
     }
