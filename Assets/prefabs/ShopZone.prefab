@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4303914920963712}
   - component: {fileID: 212394059915451072}
   - component: {fileID: 61203466717153204}
-  - component: {fileID: 114228978736146818}
+  - component: {fileID: 114904149665174996}
   m_Layer: 10
   m_Name: shop_zone
   m_TagString: Untagged
@@ -96,7 +96,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114228978736146818
+--- !u!114 &114904149665174996
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

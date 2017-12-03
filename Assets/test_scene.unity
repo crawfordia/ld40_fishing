@@ -467,14 +467,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114141362859882050, guid: cee6e8cfb0679d648922cda30a8fa4a4,
+    - target: {fileID: 114904149665174996, guid: cee6e8cfb0679d648922cda30a8fa4a4,
         type: 2}
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 1273901604}
-    m_RemovedComponents:
-    - {fileID: 114462078686735394, guid: cee6e8cfb0679d648922cda30a8fa4a4, type: 2}
-    - {fileID: 114141362859882050, guid: cee6e8cfb0679d648922cda30a8fa4a4, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cee6e8cfb0679d648922cda30a8fa4a4, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1241465870 stripped
@@ -855,20 +853,3 @@ MonoBehaviour:
   sinkChance: 0
   storminess: 0
   fishingRadius: 10
---- !u!1 &2010554845 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1413430581688990, guid: cee6e8cfb0679d648922cda30a8fa4a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 933721285}
---- !u!114 &2010554847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2010554845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 964d1d2520aea364cb42bbe2a2ded512, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storeUI: {fileID: 1273901604}
