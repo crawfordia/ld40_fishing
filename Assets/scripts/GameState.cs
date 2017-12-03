@@ -10,6 +10,10 @@ public class GameState : MonoBehaviour
     public int Fish;
     public int Money;
 
+    public Transform wavePrefab;
+    public float waveSpawnRadius;
+    public float waveSpeed;
+
     [SerializeField]
     private Text fishText;
     [SerializeField]
@@ -61,6 +65,7 @@ public class GameState : MonoBehaviour
         activeBoat = FindObjectOfType<BoatController>();
 
         StartCoroutine(updateSinkChance());
+        StartCoroutine(sendWaves());
     }
 
     // Update is called once per frame
@@ -126,13 +131,48 @@ public class GameState : MonoBehaviour
         }
 
     }
-
+    
     private void endGame()
     {
         if(gameOverUI != null)
         {
             gameOverUI.gameObject.SetActive(true);
             Time.timeScale = 0.0f;
+        }
+    }
+
+    public IEnumerator sendWaves()
+    {
+        List<Transform> wavePool = new List<Transform>(10);
+
+        while (true)
+        {
+            yield return new WaitForSeconds(4f + Random.value * 3f);
+
+            Transform newWave;
+
+            // Create a new wave, point it at the player, and push it forward
+            if(wavePool.Count > 0)
+            {
+                newWave = wavePool[0];
+                wavePool.RemoveAt(0);
+            }
+            else
+            {
+                newWave = Instantiate<Transform>(wavePrefab);
+            }
+
+            Transform theBoat = FindObjectOfType<BoatController>().transform;
+
+            newWave.transform.position = theBoat.position + (Vector3)(Random.insideUnitCircle.normalized * waveSpawnRadius);
+            newWave.up = (theBoat.position - newWave.transform.position).normalized;
+            newWave.GetComponent<Rigidbody2D>().velocity = newWave.up * waveSpeed;
+
+            foreach(Transform wave in wavePool)
+            {
+                //if(wave too far from player) { disable wave and put back into pool for reuse }
+            }
+
         }
     }
 }

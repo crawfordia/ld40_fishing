@@ -33,6 +33,8 @@ public class Bobber : MonoBehaviour {
     {
         hit = false;
         fishOn = 0;
+
+        gameObject.layer = LayerMask.NameToLayer("Bobber");
     }
 
     private void OnTriggerEnter2D()

@@ -16,8 +16,8 @@ TagManager:
   - Fish
   - Boat
   - Shop
-  - 
-  - 
+  - Wave
+  - Bobber
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Rocks
     uniqueID: 3696642293
+    locked: 0
+  - name: Wave
+    uniqueID: 183975273
     locked: 0
