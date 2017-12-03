@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 8e627f06b6b556f4492067d1e5b49a28
-timeCreated: 1512257471
+timeCreated: 1512259224
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: fish
     21300002: cash
+    21300004: arrow
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -88,7 +89,7 @@ TextureImporter:
         width: 22
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -101,6 +102,20 @@ TextureImporter:
         y: 44
         width: 23
         height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: arrow
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 25
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
