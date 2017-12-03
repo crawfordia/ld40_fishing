@@ -128,4 +128,12 @@ public class FishingController : MonoBehaviour
         state = RodState.Reeling;
         StartCoroutine(reelRoutine());
     }
+
+    private void LateUpdate()
+    {
+        if(bobber.transform.parent == null)
+        {
+            transform.right = (Vector2)(bobber.transform.position - transform.position).normalized;
+        }
+    }
 }
