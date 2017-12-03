@@ -47,6 +47,8 @@ public class Bobber : MonoBehaviour {
     {
         while(true)
         {
+            yield return new WaitForSeconds(1f + Random.value * 2f);
+
             if((fishOn = fishSpot.FishOnBobber()) > 0)
             {
                 sprite.color = Color.yellow;
@@ -55,7 +57,6 @@ public class Bobber : MonoBehaviour {
             {
                 sprite.color = Color.white;
             }
-            yield return new WaitForSeconds(1f + Random.value * 2f);
         }
     }
 

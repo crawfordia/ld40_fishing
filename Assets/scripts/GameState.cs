@@ -18,6 +18,9 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private float sinkChance;
 
+    float oldSinkChance = 0.0f;
+    float newSinkChance = 0.0f;
+
     [Range(0.0f, 1.0f)]
     public float storminess;
 
@@ -49,29 +52,38 @@ public class GameState : MonoBehaviour
         boats.Add(BoatType.boat2x2, new BaseBoat(0.2f, 2, 2));
         boats.Add(BoatType.boat2x3, new BaseBoat(0.3f, 2, 3));
         boats.Add(BoatType.boat2x4, new BaseBoat(0.4f, 2, 4));
+
+        StartCoroutine(updateSinkChance());
     }
 
     // Update is called once per frame
     void Update()
     {
-        updateSinkChance();
+        sinkChance = Mathf.Lerp(oldSinkChance, newSinkChance, 0.2f);
+        oldSinkChance = sinkChance;
+        sinkSlider.value = sinkChance;
 
-        if(sinkChance >= 1.0f) {
+        if (sinkChance >= 1.0f)
+        {
             Debug.Log("SUNK!");
         }
     }
 
-    void updateSinkChance()
+    public IEnumerator updateSinkChance()
     {
-        BaseBoat currentBoat = boats[currentBoatType];
-        // Algorithm:
-        sinkChance = Mathf.Max(0.0f, 
-            -(currentBoat.stabilityIncrease) 
-            + Random.Range(0, storminess) 
-            + ((float)Fish / currentBoat.fishCapacity)
-            );
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.value * 1f);
 
-        sinkSlider.value = sinkChance;
+            BaseBoat currentBoat = boats[currentBoatType];
+            oldSinkChance = sinkChance;
+            // Algorithm:
+            newSinkChance = Mathf.Max(0.0f,
+                -(currentBoat.stabilityIncrease)
+                + Random.Range(0, storminess)
+                + ((float)Fish / currentBoat.fishCapacity)
+                );
+        }
     }
 
     public void AddFish(int numFish)
