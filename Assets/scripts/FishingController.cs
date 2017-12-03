@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FishingController : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class FishingController : MonoBehaviour
     private RodState state;
     private GameState game;
     private const float tolerance = .02f;
+
+    PointerEventData pointerData;
+    List<RaycastResult> results;
 
     [SerializeField]
     private Bobber bobber;
@@ -31,6 +35,9 @@ public class FishingController : MonoBehaviour
         bobber.transform.parent = transform;
         bobber.enabled = false;
 
+        pointerData = new PointerEventData(EventSystem.current);
+        results = new List<RaycastResult>();
+
         game = FindObjectOfType<GameState>();
     }
 
@@ -42,8 +49,7 @@ public class FishingController : MonoBehaviour
             case RodState.LineIn:
                 if(Input.GetButtonDown("Fire1"))
                 {
-                    Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    startCast(point);
+                    startCast();
                 }
 
                 break;
@@ -58,11 +64,27 @@ public class FishingController : MonoBehaviour
 
         }
     }
-
-    private void startCast(Vector2 point)
+    
+    private void startCast()
     {
+        Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        if(cursorOnUI())
+        {
+            return;
+        }
+
         state = RodState.Casting;
         StartCoroutine(castRoutine(point));
+    }
+
+    private bool cursorOnUI()
+    {
+        pointerData.position = Input.mousePosition;
+
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        return results.Count > 0;
     }
 
     private IEnumerator castRoutine(Vector2 target)
@@ -97,6 +119,11 @@ public class FishingController : MonoBehaviour
 
     private void startReel()
     {
+        if(cursorOnUI())
+        {
+            return;
+        }
+
         bobber.enabled = false;
         state = RodState.Reeling;
         StartCoroutine(reelRoutine());
