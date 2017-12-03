@@ -96,6 +96,11 @@ public class GameState : MonoBehaviour
             endGame();
             Debug.Log("SUNK!");
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public IEnumerator updateSinkChance()
