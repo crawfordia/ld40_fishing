@@ -33,7 +33,9 @@ public class FishingSpot : MonoBehaviour {
 
         if(fishLeft <= 0)
         {
-            transform.position = Random.insideUnitCircle * FindObjectOfType<GameState>().fishingRadius;
+            transform.position = Random.insideUnitCircle.normalized 
+                * FindObjectOfType<GameState>().fishingRadius 
+                * Random.Range(1.0f, 2.0f);
             Init();
         }
     }
