@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4303914920963712}
   - component: {fileID: 212394059915451072}
-  - component: {fileID: 61203466717153204}
   - component: {fileID: 114904149665174996}
+  - component: {fileID: 58156883966903580}
   m_Layer: 10
   m_Name: shop_zone
   m_TagString: Untagged
@@ -52,7 +52,7 @@ Transform:
   m_GameObject: {fileID: 1413430581688990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.3192935, y: 5.3192935, z: 5.3192935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4970359703817508}
   m_RootOrder: 0
@@ -71,8 +71,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61203466717153204
-BoxCollider2D:
+--- !u!58 &58156883966903580
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -81,21 +81,11 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 4
 --- !u!114 &114904149665174996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,8 +132,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80fcb23651f3132448b335b83615c852, type: 3}
-  m_Color: {r: 0.02870891, g: 0.43382353, b: 0.11531969, a: 0.509}
+  m_Sprite: {fileID: 21300000, guid: aa7858d8654786c4ab8c4820ac314ea2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.797}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
