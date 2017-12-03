@@ -214,25 +214,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fish: 0
   Money: 0
+  fishingRadius: 20
+  storminess: 0
   wavePrefab: {fileID: 4854292568574060, guid: 50f3c540db8b7e74abf2b1324eb1f3a3, type: 2}
-  waveSpawnRadius: 8
+  waveSpawnRadius: 10
   waveSpeed: 0.65
+  baseWaveTime: 3
+  randWaveTime: 1
+  numWavesPerSpawn: 3
+  upgrades:
+  - boat: {fileID: 4679416319445146, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+    cost: 0
+    sinkResist: 0.1
+    cols: 1
+    rows: 2
+  - boat: {fileID: 4111561370904066, guid: 53e5397acb6ec3e4eb83e55f1d1f762f, type: 2}
+    cost: 10
+    sinkResist: 0.2
+    cols: 2
+    rows: 2
+  - boat: {fileID: 4031184234067346, guid: aae8f56c81222d94e9c49253c1222dc3, type: 2}
+    cost: 20
+    sinkResist: 0.3
+    cols: 2
+    rows: 3
+  - boat: {fileID: 4031184234067346, guid: 536d1b4858981dc4898ae070d369ee8b, type: 2}
+    cost: 40
+    sinkResist: 0.4
+    cols: 2
+    rows: 4
   fishText: {fileID: 0}
   cashText: {fileID: 0}
+  upgradeText: {fileID: 0}
   gameOverUI: {fileID: 0}
-  sinkChance: 0
-  sinkChanceIncrease: 0
-  upgrades:
-  - cost: 0
-    boat: {fileID: 4679416319445146, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
-  - cost: 10
-    boat: {fileID: 4111561370904066, guid: 53e5397acb6ec3e4eb83e55f1d1f762f, type: 2}
-  - cost: 20
-    boat: {fileID: 4031184234067346, guid: aae8f56c81222d94e9c49253c1222dc3, type: 2}
-  - cost: 40
-    boat: {fileID: 4031184234067346, guid: 536d1b4858981dc4898ae070d369ee8b, type: 2}
-  storminess: 0.06
-  fishingRadius: 10
   sinkSlider: {fileID: 0}
 --- !u!124 &124704839749147648
 Behaviour:

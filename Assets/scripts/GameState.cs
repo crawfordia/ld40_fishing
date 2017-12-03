@@ -1,5 +1,4 @@
-﻿using Assets.scripts.boats;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
-    //[HideInInspector]
+    [HideInInspector]
     public int Fish;
+    [HideInInspector]
     public int Money;
+    
+    [Space(10)]
+    public float fishingRadius = 10.0f;
+    [Range(0.0f, 1.0f)]
+    public float storminess;
 
+    [Header("Wave Spawn Settings")]
     public Transform wavePrefab;
     public float waveSpawnRadius;
     public float waveSpeed;
+    public float baseWaveTime;
+    public float randWaveTime;
+    public int numWavesPerSpawn;
 
+    [System.Serializable]
+    private struct BoatUpgrade
+    {
+        public Transform boat;
+        public int cost;
+        public float sinkResist;
+        public int cols;
+        public int rows;
+    }
+
+    [Space(10)]
+    [SerializeField]
+    private BoatUpgrade[] upgrades;
+
+    [Header("UI Objects")]
     [SerializeField]
     private Text fishText;
     [SerializeField]
@@ -23,43 +47,17 @@ public class GameState : MonoBehaviour
     private Text upgradeText;
     [SerializeField]
     private RectTransform gameOverUI;
-
     [SerializeField]
-    private float sinkChance;
-    [SerializeField]
-    private float sinkChanceIncrease;
-
-    private BoatController activeBoat;
-
-    [System.Serializable]
-    private struct BoatUpgrade
-    {
-        public int cost;
-        public Transform boat;
-    }
-
-    [SerializeField]
-    private BoatUpgrade[] upgrades;
+    private Slider sinkSlider;
 
     private int boatLevel = 0;
-
-    float oldSinkChance = 0.0f;
-    float newSinkChance = 0.0f;
-
-    [Range(0.0f, 1.0f)]
-    public float storminess;
-
-    public float fishingRadius = 10.0f;
-
-    public Slider sinkSlider;
-
-    Dictionary<int, BaseBoat> boats = new Dictionary<int, BaseBoat>();
+    private float sinkChance;
+    private float sinkChanceIncrease;
+    private BoatController activeBoat;
 
     // Use this for initialization
     void Start()
     {
-        sinkChance = 0.0f;
-        storminess = 0.0f;
         Fish = 0;
         fishText.text = Fish.ToString();
         Money = 0;
@@ -71,24 +69,17 @@ public class GameState : MonoBehaviour
             gameOverUI.gameObject.SetActive(false);
         }
 
-        boats.Add(0, new BaseBoat(0.1f, 1, 2));
-        boats.Add(1, new BaseBoat(0.2f, 2, 2));
-        boats.Add(2, new BaseBoat(0.3f, 2, 3));
-        boats.Add(3, new BaseBoat(0.4f, 2, 4));
-
         activeBoat = FindObjectOfType<BoatController>();
 
-        StartCoroutine(updateSinkChance());
+        StartCoroutine(updateSinkChanceRoutine());
         StartCoroutine(sendWaves());
     }
 
     // Update is called once per frame
     void Update()
     {
-        sinkChanceIncrease = Mathf.Lerp(sinkChanceIncrease, 0.0f, 0.2f * Time.deltaTime);
+        sinkChanceIncrease = Mathf.Lerp(sinkChanceIncrease, 0.0f, 0.1f * Time.deltaTime);
         //sinkChance = Mathf.Lerp(oldSinkChance, newSinkChance, 0.5f * Time.deltaTime);
-        sinkChance = newSinkChance;
-        oldSinkChance = sinkChance;
         sinkSlider.value = sinkChance;
 
         if (sinkChance >= 1.0f)
@@ -103,22 +94,29 @@ public class GameState : MonoBehaviour
         }
     }
 
-    public IEnumerator updateSinkChance()
+    public IEnumerator updateSinkChanceRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(Random.value * 1f);
-
-            BaseBoat currentBoat = boats[boatLevel];
-            oldSinkChance = sinkChance;
-            // Algorithm:
-            newSinkChance = Mathf.Max(0.0f,
-                -(currentBoat.stabilityIncrease)
-                + Random.Range(0, storminess)
-                + ((float)Fish / currentBoat.fishCapacity)
-                + sinkChanceIncrease
-                );
+            updateSinkChance();
         }
+    }
+
+    public void updateSinkChance()
+    {
+        float resist = upgrades[boatLevel].sinkResist;
+        float storm = Random.Range(0.0f, storminess);
+        int boatRows = upgrades[boatLevel].rows;
+        int boatCols = upgrades[boatLevel].cols;
+        float fishCap = Fish / (float)(boatRows * boatCols * 4);
+
+        sinkChance = Mathf.Max(0.0f,
+            -resist
+            + storm
+            + fishCap
+            + sinkChanceIncrease
+            );
     }
 
     public void AddFish(int numFish)
@@ -193,32 +191,34 @@ public IEnumerator sendWaves()
 
         while (true)
         {
-            yield return new WaitForSeconds(4f + Random.value * 3f);
-
-            Transform newWave;
-
-            // Create a new wave, point it at the player, and push it forward
-            if(wavePool.Count > 0)
-            {
-                newWave = wavePool[0];
-                wavePool.RemoveAt(0);
-                newWave.gameObject.SetActive(true);
-            }
-            else
-            {
-                newWave = Instantiate<Transform>(wavePrefab);
-            }
+            yield return new WaitForSeconds(baseWaveTime + Random.value * randWaveTime);
 
             Transform theBoat = FindObjectOfType<BoatController>().transform;
+            Transform newWave;
 
-            newWave.transform.position = theBoat.position + (Vector3)(Random.insideUnitCircle.normalized * waveSpawnRadius);
-            newWave.up = (theBoat.position - newWave.transform.position).normalized;
-            newWave.GetComponent<Rigidbody2D>().velocity = newWave.up * waveSpeed;
+            // Create a new waves, point it at the player, and push it forward
+            for (int i = 0; i < Random.Range(0, numWavesPerSpawn); i++)
+            {
+                if (wavePool.Count > 0)
+                {
+                    newWave = wavePool[0];
+                    wavePool.RemoveAt(0);
+                    newWave.gameObject.SetActive(true);
+                }
+                else
+                {
+                    newWave = Instantiate<Transform>(wavePrefab);
+                }
 
+                newWave.transform.position = theBoat.position + (Vector3)(Random.insideUnitCircle.normalized * waveSpawnRadius);
+                newWave.up = (theBoat.position - newWave.transform.position).normalized;
+                newWave.GetComponent<Rigidbody2D>().velocity = newWave.up * waveSpeed;
+            }
+
+            // Remove distant waves
             foreach(Wave wave in FindObjectsOfType<Wave>())
             {
-                //if(wave too far from player) { disable wave and put back into pool for reuse }
-                if (Vector3.Distance(wave.transform.position, theBoat.position) > waveSpawnRadius)
+                if (Vector3.Distance(wave.transform.position, theBoat.position) > (waveSpawnRadius * 2.0f))
                 {
                     wave.gameObject.SetActive(false);
                     wavePool.Add(wave.transform);
@@ -230,5 +230,6 @@ public IEnumerator sendWaves()
     public void increaseSinkChance(float increase)
     {
         sinkChanceIncrease += increase;
+        updateSinkChance();
     }
 }
