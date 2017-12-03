@@ -13,13 +13,11 @@ public class ShopZone : MonoBehaviour {
 
     private void OnTriggerEnter2D()
     {
-        Debug.Log("Entered Store");
         storeUI.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit2D()
     {
-        Debug.Log("Exited Store");
         storeUI.gameObject.SetActive(false);
     }
 }
