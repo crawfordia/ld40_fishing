@@ -18,10 +18,12 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private float sinkChance;
 
-    [SerializeField]
-    private float storminess;
+    [Range(0.0f, 1.0f)]
+    public float storminess;
 
     public float fishingRadius = 10.0f;
+
+    public Slider sinkSlider;
 
     enum BoatType {
         boat1x2,
@@ -68,6 +70,8 @@ public class GameState : MonoBehaviour
             + Random.Range(0, storminess) 
             + ((float)Fish / currentBoat.fishCapacity)
             );
+
+        sinkSlider.value = sinkChance;
     }
 
     public void AddFish(int numFish)
