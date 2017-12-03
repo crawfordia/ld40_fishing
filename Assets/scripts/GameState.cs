@@ -121,6 +121,7 @@ public class GameState : MonoBehaviour
         Fish += numFish;
         fishText.text = Fish.ToString();
         updateSinkChance();
+        activeBoat.GetComponentInChildren<FishPiles>().setFish(Fish);
     }
 
     public void SellFish()
@@ -130,6 +131,7 @@ public class GameState : MonoBehaviour
         fishText.text = Fish.ToString();
         cashText.text = Money.ToString();
         updateSinkChance();
+        activeBoat.GetComponentInChildren<FishPiles>().setFish(Fish);
     }
 
     public void UpgradeBoat()
