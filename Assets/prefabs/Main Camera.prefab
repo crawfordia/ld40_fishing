@@ -219,6 +219,7 @@ MonoBehaviour:
   waveSpeed: 0.65
   fishText: {fileID: 0}
   cashText: {fileID: 0}
+  gameOverUI: {fileID: 0}
   sinkChance: 0
   upgradeBoats:
   - {fileID: 4679416319445146, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -136,12 +137,18 @@ public class GameState : MonoBehaviour
     {
         if(gameOverUI != null)
         {
+            Destroy(activeBoat.gameObject);
+            this.enabled = false;
             gameOverUI.gameObject.SetActive(true);
-            Time.timeScale = 0.0f;
         }
     }
 
-    public IEnumerator sendWaves()
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("test_scene");
+    }
+
+public IEnumerator sendWaves()
     {
         List<Transform> wavePool = new List<Transform>(10);
 
