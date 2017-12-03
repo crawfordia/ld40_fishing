@@ -145,6 +145,7 @@ public class GameState : MonoBehaviour
         {
             if(Money >= upgrades[boatLevel + 1].cost)
             {
+                SellFish();
                 Money -= upgrades[boatLevel + 1].cost;
                 cashText.text = Money.ToString();
                 boatLevel += 1;
