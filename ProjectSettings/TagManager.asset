@@ -18,7 +18,7 @@ TagManager:
   - Shop
   - Wave
   - Bobber
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -50,11 +50,11 @@ TagManager:
   - name: Robot
     uniqueID: 783209699
     locked: 0
-  - name: Rocks
-    uniqueID: 3696642293
-    locked: 0
   - name: Wave
     uniqueID: 183975273
+    locked: 0
+  - name: Rocks
+    uniqueID: 3696642293
     locked: 0
   - name: Top
     uniqueID: 3434770283
