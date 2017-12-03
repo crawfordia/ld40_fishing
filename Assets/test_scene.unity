@@ -437,6 +437,12 @@ Prefab:
     - {fileID: 114141362859882050, guid: cee6e8cfb0679d648922cda30a8fa4a4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cee6e8cfb0679d648922cda30a8fa4a4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1241465870 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114940398585146544, guid: c0cbeac1fc9adae429ce492b5db271d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 114557250}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!224 &1273901604 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224302168953077704, guid: c0cbeac1fc9adae429ce492b5db271d9,
@@ -799,9 +805,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fish: 0
   Money: 0
-  fishText: {fileID: 1425840312}
+  fishText: {fileID: 1241465870}
+  cashText: {fileID: 1425840312}
   sinkChance: 0
   storminess: 0
+  fishingRadius: 10
 --- !u!1 &2010554845 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1413430581688990, guid: cee6e8cfb0679d648922cda30a8fa4a4,
