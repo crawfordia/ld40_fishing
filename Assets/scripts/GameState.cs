@@ -20,6 +20,8 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private Text cashText;
     [SerializeField]
+    private Text upgradeText;
+    [SerializeField]
     private RectTransform gameOverUI;
 
     [SerializeField]
@@ -29,8 +31,16 @@ public class GameState : MonoBehaviour
 
     private BoatController activeBoat;
 
+    [System.Serializable]
+    private struct BoatUpgrade
+    {
+        public int cost;
+        public Transform boat;
+    }
+
     [SerializeField]
-    private Transform[] upgradeBoats;
+    private BoatUpgrade[] upgrades;
+
     private int boatLevel = 0;
 
     float oldSinkChance = 0.0f;
@@ -54,6 +64,7 @@ public class GameState : MonoBehaviour
         fishText.text = Fish.ToString();
         Money = 0;
         cashText.text = Money.ToString();
+        upgradeText.text = string.Format("Upgrade - {0}", upgrades[1].cost);
 
         if(gameOverUI != null)
         {
@@ -123,18 +134,32 @@ public class GameState : MonoBehaviour
 
     public void UpgradeBoat()
     {
-        if(boatLevel < upgradeBoats.Length - 1)
+        if(boatLevel < upgrades.Length - 1)
         {
-            boatLevel += 1;
-            Vector3 spawnPoint = activeBoat.transform.position;
-            Quaternion orientation = activeBoat.transform.rotation;
-            Destroy(activeBoat.gameObject);
+            if(Money >= upgrades[boatLevel + 1].cost)
+            {
+                Money -= upgrades[boatLevel + 1].cost;
+                cashText.text = Money.ToString();
+                boatLevel += 1;
+                Vector3 spawnPoint = activeBoat.transform.position;
+                Quaternion orientation = activeBoat.transform.rotation;
+                Destroy(activeBoat.gameObject);
 
-            Transform newBoat = Instantiate<Transform>(upgradeBoats[boatLevel]);
-            newBoat.position = spawnPoint;
-            newBoat.rotation = orientation;
+                Transform newBoat = Instantiate<Transform>(upgrades[boatLevel].boat);
+                newBoat.position = spawnPoint;
+                newBoat.rotation = orientation;
 
-            activeBoat = newBoat.GetComponent<BoatController>();
+                activeBoat = newBoat.GetComponent<BoatController>();
+            }
+        }
+
+        if(boatLevel < upgrades.Length - 1)
+        {
+            upgradeText.text = string.Format("Upgrade - {0}", upgrades[boatLevel + 1].cost);
+        }
+        else
+        {
+            upgradeText.text = "Max Level";
         }
 
     }

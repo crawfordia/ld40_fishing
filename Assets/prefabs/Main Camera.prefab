@@ -221,12 +221,17 @@ MonoBehaviour:
   cashText: {fileID: 0}
   gameOverUI: {fileID: 0}
   sinkChance: 0
-  upgradeBoats:
-  - {fileID: 4679416319445146, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
-  - {fileID: 4111561370904066, guid: 53e5397acb6ec3e4eb83e55f1d1f762f, type: 2}
-  - {fileID: 4031184234067346, guid: aae8f56c81222d94e9c49253c1222dc3, type: 2}
-  - {fileID: 4031184234067346, guid: 536d1b4858981dc4898ae070d369ee8b, type: 2}
-  storminess: 0.04
+  sinkChanceIncrease: 0
+  upgrades:
+  - cost: 0
+    boat: {fileID: 4679416319445146, guid: 6b53c131e6e8da04a87e0b6d62c411a0, type: 2}
+  - cost: 10
+    boat: {fileID: 4111561370904066, guid: 53e5397acb6ec3e4eb83e55f1d1f762f, type: 2}
+  - cost: 20
+    boat: {fileID: 4031184234067346, guid: aae8f56c81222d94e9c49253c1222dc3, type: 2}
+  - cost: 40
+    boat: {fileID: 4031184234067346, guid: 536d1b4858981dc4898ae070d369ee8b, type: 2}
+  storminess: 0.06
   fishingRadius: 10
   sinkSlider: {fileID: 0}
 --- !u!124 &124704839749147648
