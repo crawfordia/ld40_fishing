@@ -169,6 +169,7 @@ public IEnumerator sendWaves()
             {
                 newWave = wavePool[0];
                 wavePool.RemoveAt(0);
+                newWave.gameObject.SetActive(true);
             }
             else
             {
@@ -181,11 +182,15 @@ public IEnumerator sendWaves()
             newWave.up = (theBoat.position - newWave.transform.position).normalized;
             newWave.GetComponent<Rigidbody2D>().velocity = newWave.up * waveSpeed;
 
-            foreach(Transform wave in wavePool)
+            foreach(Wave wave in FindObjectsOfType<Wave>())
             {
                 //if(wave too far from player) { disable wave and put back into pool for reuse }
+                if (Vector3.Distance(wave.transform.position, theBoat.position) > waveSpawnRadius)
+                {
+                    wave.gameObject.SetActive(false);
+                    wavePool.Add(wave.transform);
+                }
             }
-
         }
     }
 

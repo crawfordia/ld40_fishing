@@ -67,6 +67,8 @@ public class Bobber : MonoBehaviour {
         hit = false;
         fishOn = 0;
 
+        transform.rotation = Quaternion.identity;
+
         Collider2D collider = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("Fish"));
 
         if(collider != null)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class wave : MonoBehaviour {
+public class Wave : MonoBehaviour {
 
     public float sinkChanceIncrease;
     
@@ -8,6 +8,5 @@ public class wave : MonoBehaviour {
     {
         GameState game = FindObjectOfType<GameState>();
         game.increaseSinkChance(sinkChanceIncrease);
-        Debug.Log("WAVE HIT!");
     }
 }
