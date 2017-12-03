@@ -34,15 +34,7 @@ public class GameState : MonoBehaviour
 
     public Slider sinkSlider;
 
-    enum BoatType {
-        boat1x2,
-        boat2x2,
-        boat2x3,
-        boat2x4
-    }
-    BoatType currentBoatType = BoatType.boat1x2;
-
-    Dictionary<BoatType, BaseBoat> boats = new Dictionary<BoatType, BaseBoat>();
+    Dictionary<int, BaseBoat> boats = new Dictionary<int, BaseBoat>();
 
     // Use this for initialization
     void Start()
@@ -54,10 +46,10 @@ public class GameState : MonoBehaviour
         Money = 0;
         cashText.text = Money.ToString();
 
-        boats.Add(BoatType.boat1x2, new BaseBoat(0.1f, 1, 2));
-        boats.Add(BoatType.boat2x2, new BaseBoat(0.2f, 2, 2));
-        boats.Add(BoatType.boat2x3, new BaseBoat(0.3f, 2, 3));
-        boats.Add(BoatType.boat2x4, new BaseBoat(0.4f, 2, 4));
+        boats.Add(0, new BaseBoat(0.1f, 1, 2));
+        boats.Add(1, new BaseBoat(0.2f, 2, 2));
+        boats.Add(2, new BaseBoat(0.3f, 2, 3));
+        boats.Add(3, new BaseBoat(0.4f, 2, 4));
 
         activeBoat = FindObjectOfType<BoatController>();
 
@@ -83,7 +75,7 @@ public class GameState : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.value * 1f);
 
-            BaseBoat currentBoat = boats[currentBoatType];
+            BaseBoat currentBoat = boats[boatLevel];
             oldSinkChance = sinkChance;
             // Algorithm:
             newSinkChance = Mathf.Max(0.0f,
@@ -106,6 +98,7 @@ public class GameState : MonoBehaviour
         Fish = 0;
         fishText.text = Fish.ToString();
         cashText.text = Money.ToString();
+        updateSinkChance();
     }
 
     public void UpgradeBoat()
