@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(LineRenderer))]
 public class FishingController : MonoBehaviour
 {
     enum RodState
@@ -16,6 +17,7 @@ public class FishingController : MonoBehaviour
     private RodState state;
     private GameState game;
     private const float tolerance = .02f;
+    private LineRenderer fishingLine;
 
     PointerEventData pointerData;
     List<RaycastResult> results;
@@ -26,6 +28,13 @@ public class FishingController : MonoBehaviour
     private float reelSpeed = 1.0f;
     [SerializeField]
     private float autoReelDistance = 6.0f;
+    [SerializeField]
+    private float armOffset = -.25f;
+
+    private void Awake()
+    {
+        fishingLine = GetComponent<LineRenderer>();
+    }
 
     // Use this for initialization
     void Start()
@@ -89,6 +98,8 @@ public class FishingController : MonoBehaviour
 
     private IEnumerator castRoutine(Vector2 target)
     {
+        bobber.transform.parent = null;
+
         while(Vector2.Distance(bobber.transform.position, target) > tolerance)
         {
             bobber.transform.position = Vector3.MoveTowards(bobber.transform.position, target, reelSpeed * Time.deltaTime);
@@ -97,7 +108,6 @@ public class FishingController : MonoBehaviour
         }
 
         state = RodState.LineOut;
-        bobber.transform.parent = null;
         bobber.enabled = true;
 
     }
@@ -134,6 +144,17 @@ public class FishingController : MonoBehaviour
         if(bobber.transform.parent == null)
         {
             transform.right = (Vector2)(bobber.transform.position - transform.position).normalized;
+        }
+
+        if(state != RodState.LineIn)
+        {
+            fishingLine.enabled = true;
+            fishingLine.SetPosition(0, transform.position + transform.up * armOffset);
+            fishingLine.SetPosition(1, bobber.transform.position);
+        }
+        else
+        {
+            fishingLine.enabled = false;
         }
     }
 }
