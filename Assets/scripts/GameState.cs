@@ -24,6 +24,8 @@ public class GameState : MonoBehaviour
 
     [SerializeField]
     private float sinkChance;
+    [SerializeField]
+    private float sinkChanceIncrease;
 
     private BoatController activeBoat;
 
@@ -72,7 +74,9 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sinkChance = Mathf.Lerp(oldSinkChance, newSinkChance, 0.2f);
+        sinkChanceIncrease = Mathf.Lerp(sinkChanceIncrease, 0.0f, 0.2f * Time.deltaTime);
+        //sinkChance = Mathf.Lerp(oldSinkChance, newSinkChance, 0.5f * Time.deltaTime);
+        sinkChance = newSinkChance;
         oldSinkChance = sinkChance;
         sinkSlider.value = sinkChance;
 
@@ -96,6 +100,7 @@ public class GameState : MonoBehaviour
                 -(currentBoat.stabilityIncrease)
                 + Random.Range(0, storminess)
                 + ((float)Fish / currentBoat.fishCapacity)
+                + sinkChanceIncrease
                 );
         }
     }
@@ -104,6 +109,7 @@ public class GameState : MonoBehaviour
     {
         Fish += numFish;
         fishText.text = Fish.ToString();
+        updateSinkChance();
     }
 
     public void SellFish()
@@ -181,5 +187,10 @@ public IEnumerator sendWaves()
             }
 
         }
+    }
+
+    public void increaseSinkChance(float increase)
+    {
+        sinkChanceIncrease += increase;
     }
 }

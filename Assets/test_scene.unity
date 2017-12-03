@@ -385,6 +385,11 @@ Prefab:
       propertyPath: sinkSlider
       value: 
       objectReference: {fileID: 934247135}
+    - target: {fileID: 114975773926741348, guid: 481bd81cc7804a74c9baeec69fcbb6fa,
+        type: 2}
+      propertyPath: storminess
+      value: 0.06
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 481bd81cc7804a74c9baeec69fcbb6fa, type: 2}
   m_IsPrefabParent: 0
