@@ -14,6 +14,8 @@ public class GameState : MonoBehaviour
     private Text fishText;
     [SerializeField]
     private Text cashText;
+    [SerializeField]
+    private RectTransform gameOverUI;
 
     [SerializeField]
     private float sinkChance;
@@ -46,6 +48,11 @@ public class GameState : MonoBehaviour
         Money = 0;
         cashText.text = Money.ToString();
 
+        if(gameOverUI != null)
+        {
+            gameOverUI.gameObject.SetActive(false);
+        }
+
         boats.Add(0, new BaseBoat(0.1f, 1, 2));
         boats.Add(1, new BaseBoat(0.2f, 2, 2));
         boats.Add(2, new BaseBoat(0.3f, 2, 3));
@@ -65,6 +72,7 @@ public class GameState : MonoBehaviour
 
         if (sinkChance >= 1.0f)
         {
+            endGame();
             Debug.Log("SUNK!");
         }
     }
@@ -117,5 +125,14 @@ public class GameState : MonoBehaviour
             activeBoat = newBoat.GetComponent<BoatController>();
         }
 
+    }
+
+    private void endGame()
+    {
+        if(gameOverUI != null)
+        {
+            gameOverUI.gameObject.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }
