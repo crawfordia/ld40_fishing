@@ -13,10 +13,17 @@ public class BoatController : MonoBehaviour
     private float rowForce = 80;
     [SerializeField]
     private float turnForce = 40;
+    [SerializeField]
+    private Vector2 centerOfMass = Vector2.zero;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        rigidbody.centerOfMass = centerOfMass;
     }
 
     private void Update()

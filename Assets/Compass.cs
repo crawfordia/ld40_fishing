@@ -5,12 +5,24 @@ using UnityEngine;
 public class Compass : MonoBehaviour
 {
     [SerializeField]
-    private Transform from;
-    [SerializeField]
     private Transform to;
+
+    private Transform boat;
 
     private void LateUpdate()
     {
-        transform.right = (from.position - to.position).normalized;
+        if(boat == null)
+        {
+            BoatController boatContoller = FindObjectOfType<BoatController>();
+            if(boatContoller != null)
+            {
+                boat = boatContoller.transform;
+            }
+            else
+            {
+                return;
+            }
+        }
+        transform.right = (boat.position - to.position).normalized;
     }
 }

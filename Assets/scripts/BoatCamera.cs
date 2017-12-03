@@ -14,8 +14,24 @@ public class BoatCamera : MonoBehaviour
     [SerializeField]
     private float velocityScale = 1.0f;
 
+
+
     private void LateUpdate()
     {
+        if(boatRigidbody == null)
+        {
+            BoatController boat = FindObjectOfType<BoatController>();
+
+            if(boat != null)
+            {
+                boatRigidbody = boat.GetComponent<Rigidbody2D>();
+            }
+            else
+            {
+                return;
+            }
+        }
+
         transform.position = boatRigidbody.transform.position + offset;
         transform.position += boatRigidbody.transform.TransformDirection(localOffset);
         transform.position += (Vector3)boatRigidbody.velocity * velocityScale;

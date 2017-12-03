@@ -18,6 +18,12 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private float sinkChance;
 
+    private BoatController activeBoat;
+
+    [SerializeField]
+    private Transform[] upgradeBoats;
+    private int boatLevel = 0;
+
     float oldSinkChance = 0.0f;
     float newSinkChance = 0.0f;
 
@@ -52,6 +58,8 @@ public class GameState : MonoBehaviour
         boats.Add(BoatType.boat2x2, new BaseBoat(0.2f, 2, 2));
         boats.Add(BoatType.boat2x3, new BaseBoat(0.3f, 2, 3));
         boats.Add(BoatType.boat2x4, new BaseBoat(0.4f, 2, 4));
+
+        activeBoat = FindObjectOfType<BoatController>();
 
         StartCoroutine(updateSinkChance());
     }
@@ -98,5 +106,23 @@ public class GameState : MonoBehaviour
         Fish = 0;
         fishText.text = Fish.ToString();
         cashText.text = Money.ToString();
+    }
+
+    public void UpgradeBoat()
+    {
+        if(boatLevel < upgradeBoats.Length - 1)
+        {
+            boatLevel += 1;
+            Vector3 spawnPoint = activeBoat.transform.position;
+            Quaternion orientation = activeBoat.transform.rotation;
+            Destroy(activeBoat.gameObject);
+
+            Transform newBoat = Instantiate<Transform>(upgradeBoats[boatLevel]);
+            newBoat.position = spawnPoint;
+            newBoat.rotation = orientation;
+
+            activeBoat = newBoat.GetComponent<BoatController>();
+        }
+
     }
 }
